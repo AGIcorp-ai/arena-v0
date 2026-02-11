@@ -1,0 +1,324 @@
+{
+  "adapter_jobs": [
+    {
+      "completed_at": "2026-02-11T02:24:46.122708+00:00",
+      "created_at": "2026-02-11T02:24:45.170684+00:00",
+      "creature_id": "a6ff3565-c80d-4e92-a23b-0287235512cc",
+      "job_id": "c4f11d53-4fa1-4847-91df-b5329e262409",
+      "owner_player_id": "6a485a9d-cc98-4e47-92f6-a88dcafc6f52",
+      "result": {
+        "note": "v0 simulated fine-tune mutation",
+        "skill_delta": 0.26889047157156676
+      },
+      "started_at": "2026-02-11T02:24:45.217108+00:00",
+      "status": "completed",
+      "token_id": "c50a2e14-b65c-413f-b53e-041b868e3496"
+    },
+    {
+      "completed_at": "2026-02-11T02:24:47.040056+00:00",
+      "created_at": "2026-02-11T02:24:46.769430+00:00",
+      "creature_id": "d53a1fe6-6edf-4625-aa0d-8d0f578c4332",
+      "job_id": "3b69a73a-491b-496e-8b93-cf20940e8bcb",
+      "owner_player_id": "329fe8fe-b848-4061-a3e7-e753e25681ea",
+      "result": {
+        "note": "v0 simulated fine-tune mutation",
+        "skill_delta": 0.3650448695542919
+      },
+      "started_at": "2026-02-11T02:24:46.890011+00:00",
+      "status": "completed",
+      "token_id": "c644ac6d-e218-4405-b377-8930ac4a83f3"
+    },
+    {
+      "completed_at": "2026-02-11T02:24:48.133278+00:00",
+      "created_at": "2026-02-11T02:24:47.715699+00:00",
+      "creature_id": "59966372-3157-42c6-a407-4f8372aeb134",
+      "job_id": "20250376-7641-412e-8dd9-26d9c7a22d21",
+      "owner_player_id": "ecca4c2b-9325-4f05-adf5-f837dbd9a865",
+      "result": {
+        "note": "v0 simulated fine-tune mutation",
+        "skill_delta": 0.26550969521822365
+      },
+      "started_at": "2026-02-11T02:24:47.849298+00:00",
+      "status": "completed",
+      "token_id": "a286ce7f-2d4f-40b1-b139-d9f914add114"
+    },
+    {
+      "completed_at": "2026-02-11T02:24:49.679246+00:00",
+      "created_at": "2026-02-11T02:24:49.475178+00:00",
+      "creature_id": "59966372-3157-42c6-a407-4f8372aeb134",
+      "job_id": "5d1652c7-a7db-4b6a-95c0-b137d82b5586",
+      "owner_player_id": "ecca4c2b-9325-4f05-adf5-f837dbd9a865",
+      "result": {
+        "note": "v0 simulated fine-tune mutation",
+        "skill_delta": 0.23904573605038223
+      },
+      "started_at": "2026-02-11T02:24:49.543132+00:00",
+      "status": "completed",
+      "token_id": "bc9fd272-3c72-4f13-b213-b4ae0d08c568"
+    },
+    {
+      "completed_at": "2026-02-11T02:24:50.696308+00:00",
+      "created_at": "2026-02-11T02:24:50.516936+00:00",
+      "creature_id": "8ad53894-bf26-4943-a25b-4afc39f4c237",
+      "job_id": "545be699-de7e-4fbf-a8c9-596c8f621932",
+      "owner_player_id": "6bf566de-ea48-488b-9ce8-c4f0f9bbe6d8",
+      "result": {
+        "note": "v0 simulated fine-tune mutation",
+        "skill_delta": 0.21480218632878162
+      },
+      "started_at": "2026-02-11T02:24:50.590780+00:00",
+      "status": "completed",
+      "token_id": "9ce20f4a-e16b-4e7c-ace8-bd7a2ef4449e"
+    },
+    {
+      "completed_at": "2026-02-11T02:24:51.636549+00:00",
+      "created_at": "2026-02-11T02:24:51.096437+00:00",
+      "creature_id": "8ad53894-bf26-4943-a25b-4afc39f4c237",
+      "job_id": "730de55a-773c-4bd9-8509-15eda54bfbe2",
+      "owner_player_id": "6bf566de-ea48-488b-9ce8-c4f0f9bbe6d8",
+      "result": {
+        "note": "v0 simulated fine-tune mutation",
+        "skill_delta": 0.21358916325701402
+      },
+      "started_at": "2026-02-11T02:24:51.139410+00:00",
+      "status": "completed",
+      "token_id": "17ad1487-5546-4aa0-af9c-d0761dedbee4"
+    }
+  ],
+  "adapter_tokens": [
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "creature_id": "a6ff3565-c80d-4e92-a23b-0287235512cc",
+      "minted_at": "2026-02-11T02:24:45.169807+00:00",
+      "owner_player_id": "6a485a9d-cc98-4e47-92f6-a88dcafc6f52",
+      "token_id": "c50a2e14-b65c-413f-b53e-041b868e3496"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "creature_id": "d53a1fe6-6edf-4625-aa0d-8d0f578c4332",
+      "minted_at": "2026-02-11T02:24:46.768634+00:00",
+      "owner_player_id": "329fe8fe-b848-4061-a3e7-e753e25681ea",
+      "token_id": "c644ac6d-e218-4405-b377-8930ac4a83f3"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "creature_id": "59966372-3157-42c6-a407-4f8372aeb134",
+      "minted_at": "2026-02-11T02:24:47.714229+00:00",
+      "owner_player_id": "ecca4c2b-9325-4f05-adf5-f837dbd9a865",
+      "token_id": "a286ce7f-2d4f-40b1-b139-d9f914add114"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "creature_id": "59966372-3157-42c6-a407-4f8372aeb134",
+      "minted_at": "2026-02-11T02:24:49.473983+00:00",
+      "owner_player_id": "ecca4c2b-9325-4f05-adf5-f837dbd9a865",
+      "token_id": "bc9fd272-3c72-4f13-b213-b4ae0d08c568"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "creature_id": "8ad53894-bf26-4943-a25b-4afc39f4c237",
+      "minted_at": "2026-02-11T02:24:50.515576+00:00",
+      "owner_player_id": "6bf566de-ea48-488b-9ce8-c4f0f9bbe6d8",
+      "token_id": "9ce20f4a-e16b-4e7c-ace8-bd7a2ef4449e"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "creature_id": "8ad53894-bf26-4943-a25b-4afc39f4c237",
+      "minted_at": "2026-02-11T02:24:51.095183+00:00",
+      "owner_player_id": "6bf566de-ea48-488b-9ce8-c4f0f9bbe6d8",
+      "token_id": "17ad1487-5546-4aa0-af9c-d0761dedbee4"
+    }
+  ],
+  "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+  "minted_cards": [
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "card_id": "04465296-2e06-4811-9bc9-c42a52c1122b",
+      "card_text": "Prefer short hypotheses; test quickly; keep a reversible plan; promote winning subroutines into reusable templates.",
+      "examples": [
+        {
+          "input": {
+            "prompt": "\u2026",
+            "task": "tool"
+          },
+          "outcome": "win",
+          "output": {
+            "action": "search",
+            "text": "\u2026"
+          }
+        }
+      ],
+      "from_creature_id": "8221b0d4-6cd7-4a70-9e89-2113dbab7af3",
+      "minted_at": "2026-02-11T02:24:45.168926+00:00",
+      "minted_by_creature_id": "a6ff3565-c80d-4e92-a23b-0287235512cc",
+      "owner_player_id": "6a485a9d-cc98-4e47-92f6-a88dcafc6f52",
+      "tags": [
+        "heuristics",
+        "compression",
+        "generalization"
+      ],
+      "title": "Prune Protocol"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "card_id": "b2c845a8-fa30-4678-8385-3154a4d9e0cb",
+      "card_text": "Prefer short hypotheses; test quickly; keep a reversible plan; promote winning subroutines into reusable templates.",
+      "examples": [
+        {
+          "input": {
+            "prompt": "\u2026",
+            "task": "code"
+          },
+          "outcome": "win",
+          "output": {
+            "action": "search",
+            "text": "\u2026"
+          }
+        }
+      ],
+      "from_creature_id": "a6ff3565-c80d-4e92-a23b-0287235512cc",
+      "minted_at": "2026-02-11T02:24:46.767780+00:00",
+      "minted_by_creature_id": "d53a1fe6-6edf-4625-aa0d-8d0f578c4332",
+      "owner_player_id": "329fe8fe-b848-4061-a3e7-e753e25681ea",
+      "tags": [
+        "speed",
+        "heuristics",
+        "tool-use"
+      ],
+      "title": "Pivot Protocol"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "card_id": "a2594d42-b9f1-4042-8393-5f6a33d2af72",
+      "card_text": "Prefer short hypotheses; test quickly; keep a reversible plan; promote winning subroutines into reusable templates.",
+      "examples": [
+        {
+          "input": {
+            "prompt": "\u2026",
+            "task": "code"
+          },
+          "outcome": "loss",
+          "output": {
+            "action": "refine",
+            "text": "\u2026"
+          }
+        }
+      ],
+      "from_creature_id": "4682a6da-9788-42c9-b950-d83bd741c98c",
+      "minted_at": "2026-02-11T02:24:47.712572+00:00",
+      "minted_by_creature_id": "59966372-3157-42c6-a407-4f8372aeb134",
+      "owner_player_id": "ecca4c2b-9325-4f05-adf5-f837dbd9a865",
+      "tags": [
+        "robustness",
+        "heuristics",
+        "speed"
+      ],
+      "title": "Cache Protocol"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "card_id": "ecc1feb6-3c05-46e8-a60c-4fdb590f26f3",
+      "card_text": "Prefer short hypotheses; test quickly; keep a reversible plan; promote winning subroutines into reusable templates.",
+      "examples": [
+        {
+          "input": {
+            "prompt": "\u2026",
+            "task": "arc"
+          },
+          "outcome": "loss",
+          "output": {
+            "action": "search",
+            "text": "\u2026"
+          }
+        }
+      ],
+      "from_creature_id": "d53a1fe6-6edf-4625-aa0d-8d0f578c4332",
+      "minted_at": "2026-02-11T02:24:49.472831+00:00",
+      "minted_by_creature_id": "59966372-3157-42c6-a407-4f8372aeb134",
+      "owner_player_id": "ecca4c2b-9325-4f05-adf5-f837dbd9a865",
+      "tags": [
+        "tool-use",
+        "heuristics",
+        "generalization"
+      ],
+      "title": "Latch Protocol"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "card_id": "711d4615-3eeb-4aea-aea4-5a6b3076b7f1",
+      "card_text": "Prefer short hypotheses; test quickly; keep a reversible plan; promote winning subroutines into reusable templates.",
+      "examples": [
+        {
+          "input": {
+            "prompt": "\u2026",
+            "task": "tool"
+          },
+          "outcome": "win",
+          "output": {
+            "action": "plan",
+            "text": "\u2026"
+          }
+        }
+      ],
+      "from_creature_id": "553c6d7d-0f89-40d1-8ae2-2d74196f2dae",
+      "minted_at": "2026-02-11T02:24:50.514340+00:00",
+      "minted_by_creature_id": "8ad53894-bf26-4943-a25b-4afc39f4c237",
+      "owner_player_id": "6bf566de-ea48-488b-9ce8-c4f0f9bbe6d8",
+      "tags": [
+        "generalization",
+        "heuristics",
+        "search"
+      ],
+      "title": "Fork Protocol"
+    },
+    {
+      "arena_id": "19a32b39-cdad-4437-9a92-7d9acbe96f3a",
+      "card_id": "af9d9067-0941-45a4-bd0e-63c9cca89870",
+      "card_text": "Prefer short hypotheses; test quickly; keep a reversible plan; promote winning subroutines into reusable templates.",
+      "examples": [
+        {
+          "input": {
+            "prompt": "\u2026",
+            "task": "tool"
+          },
+          "outcome": "loss",
+          "output": {
+            "action": "plan",
+            "text": "\u2026"
+          }
+        }
+      ],
+      "from_creature_id": "831eaf9a-0662-4536-b810-4fe26ee7d747",
+      "minted_at": "2026-02-11T02:24:51.093735+00:00",
+      "minted_by_creature_id": "8ad53894-bf26-4943-a25b-4afc39f4c237",
+      "owner_player_id": "6bf566de-ea48-488b-9ce8-c4f0f9bbe6d8",
+      "tags": [
+        "speed",
+        "tool-use",
+        "generalization"
+      ],
+      "title": "Fork Protocol"
+    }
+  ],
+  "trial_metrics": {
+    "avg_attacker": {
+      "control_safety": 0.8838034510689702,
+      "economic_impact": 0.3750964994350147,
+      "efficiency": 0.3903325634063922,
+      "generalization": 0.4824577665643042,
+      "outcome": 0.3649391234540961,
+      "reliability": 0.7394414623111011
+    },
+    "avg_defender": {
+      "control_safety": 0.8838034510689702,
+      "economic_impact": 0.6449404253639176,
+      "efficiency": 0.6597597485909378,
+      "generalization": 0.5728806794733378,
+      "outcome": 0.6350608765459037,
+      "reliability": 0.8606861201331751
+    },
+    "n_trials": 363,
+    "schema_version": "performance_v0_2"
+  },
+  "winner_id": "8ad53894-bf26-4943-a25b-4afc39f4c237"
+}

@@ -1,0 +1,398 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Arena v0: Verifiable Self-Improving Agents</title>
+  <meta name="description" content="Arena v0: self-improving agents with deterministic replay and an append-only event log. Proof run included."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg0:#07090c;
+      --bg1:#0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.54);
+      --good:#2cf59f;
+      --bad:#ff6b6b;
+      --gold:#ffd37a;
+      --blue:#7ab7ff;
+      --shadow: 0 10px 40px rgba(0,0,0,.42);
+    }
+    html, body { height: 100%; }
+    body {
+      margin:0;
+      color: var(--text);
+      font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1100px 600px at 15% 15%, rgba(122,183,255,.22), transparent 55%),
+        radial-gradient(1000px 500px at 80% 10%, rgba(255,211,122,.20), transparent 50%),
+        radial-gradient(900px 600px at 70% 85%, rgba(44,245,159,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 20px 56px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap: wrap; }
+    .brand { display:flex; gap: 10px; align-items: center; }
+    .badge {
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 8px 12px; border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(10px);
+    }
+    .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(44,245,159,.12);
+    }
+    .btns { display:flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 10px 12px; border-radius: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      text-decoration: none; color: var(--text);
+      box-shadow: 0 1px 0 rgba(255,255,255,.08) inset;
+    }
+    .btn:hover { background: rgba(255,255,255,.09); }
+    .btn.live {
+      background: linear-gradient(135deg, rgba(44,245,159,.22), rgba(122,183,255,.24));
+      border-color: rgba(44,245,159,.45);
+      color: #ecfff6;
+      font-weight: 600;
+    }
+    .btn.live:hover { background: linear-gradient(135deg, rgba(44,245,159,.30), rgba(122,183,255,.30)); }
+    .hero {
+      display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px;
+      margin-top: 22px;
+    }
+    @media (max-width: 980px) { .hero { grid-template-columns: 1fr; } }
+    h1 {
+      font-family: "Fraunces", ui-serif, Georgia, serif;
+      font-weight: 700;
+      letter-spacing: .2px;
+      font-size: 46px;
+      line-height: 1.05;
+      margin: 0;
+    }
+    .sub { color: var(--muted); font-size: 18px; line-height: 1.55; margin-top: 12px; max-width: 58ch; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .sprites {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 980px) { .sprites { grid-template-columns: repeat(2, 1fr); } }
+    .spriteCard {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 10px;
+      text-align: center;
+    }
+    .spriteCard img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      image-rendering: pixelated;
+      background: rgba(0,0,0,.18);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .spriteName { margin-top: 8px; font-size: 13px; color: var(--muted); letter-spacing: .02em; }
+    .kpis { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+    @media (max-width: 980px) { .kpis { grid-template-columns: 1fr; } }
+    .kpi {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .label { color: var(--muted2); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .big { font-size: 34px; font-weight: 650; margin-top: 8px; }
+    .small { color: var(--muted); margin-top: 4px; font-size: 14px; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    @media (max-width: 980px) { .grid2 { grid-template-columns: 1fr; } }
+    .section { margin-top: 22px; }
+    h2 { margin: 0 0 10px 0; font-size: 18px; letter-spacing: .02em; }
+    .p { color: var(--muted); line-height: 1.6; }
+    .callout {
+      border-left: 3px solid rgba(122,183,255,.7);
+      padding-left: 12px;
+      color: var(--muted);
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+    }
+    .ex {
+      display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;
+    }
+    @media (max-width: 980px) { .ex { grid-template-columns: 1fr; } }
+    .chip {
+      display:inline-flex; align-items:center;
+      padding: 6px 10px; border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .example {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .row { display:flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+    .before { color: rgba(255,255,255,.74); }
+    .after { color: var(--good); }
+    a { color: rgba(122,183,255,.95); }
+    details {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 10px 12px;
+    }
+    summary { cursor: pointer; color: var(--muted); }
+    pre {
+      margin: 10px 0 0 0;
+      background: rgba(0,0,0,.28);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 12px;
+      overflow:auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .demo {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+      background: rgba(0,0,0,.28);
+    }
+    .demo img { width: 100%; height: auto; display:block; }
+    .foot { margin-top: 26px; color: rgba(255,255,255,.45); font-size: 12px; }
+    .anim-in { animation: in .5s ease-out both; }
+    @keyframes in { from { transform: translateY(6px); opacity: .0; } to { transform: translateY(0); opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar anim-in">
+      <div class="brand">
+        <div class="badge"><span class="dot"></span> Proof run: <b>PASS</b></div>
+        <div class="chip">Deterministic</div>
+        <div class="chip">Append-only log</div>
+      </div>
+      <div class="btns">
+        <a class="btn live" href="https://ath-ms-7a72.tail6017fa.ts.net/" target="_blank" rel="noopener">Open Live Arena</a>
+        <a class="btn" href="runs/current/verdict.json">Verifiable verdict</a>
+        <a class="btn" href="runs/current/report.json">Proof report</a>
+        <a class="btn" href="runs/current/fixed_failures.json">Before/after</a>
+        <a class="btn" href="runs/current/arena_raw.gif">Raw terminal replay</a>
+        <a class="btn" href="technical.html">Technical deep dive</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="panel anim-in">
+        <h1>Agents that improve themselves, with receipts.</h1>
+        <div class="sub">Arena v0 is a competitive sandbox where agents fight, learn from failures, and evolve through an auditable event log.</div>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Baseline pass rate</div>
+            <div class="big">67%</div>
+            <div class="small">40 / 60 tasks passed</div>
+          </div>
+          <div class="kpi">
+            <div class="label">After SkillRL loop</div>
+            <div class="big">78%</div>
+            <div class="small">47 / 60 tasks passed</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Measured improvement</div>
+            <div class="big" style="color: var(--good);">+12%</div>
+            <div class="small">Policy applied to 35% of outputs</div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="callout">
+            <b>Why investors should care:</b> this is a repeatable mechanism for turning agent failures into durable, auditable capabilities.
+            Today it corrects output compliance; next it drives tool-use, strategy, and real-world workflows.
+          </div>
+        </div>
+      </div>
+
+      <div class="panel anim-in">
+        <h2>30-second demo</h2>
+        <div class="p">Eight creatures compete, lose layers (HP), mint 1-of-1 drops, and spend tokens on async mutations. Everything is logged.</div>
+        <div class="demo" style="margin-top: 12px;">
+          <img src="runs/current/arena.gif" alt="Arena v0 replay GIF"/>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <span class="chip">No buttons required</span>
+          <span class="chip">Replayable</span>
+          <span class="chip mono">seed + log</span>
+        </div>
+        <div style="margin-top:14px" class="label">Meet the Contenders</div><div class="sprites"><div class="spriteCard"><img src="runs/current/sprites/p1.gif" alt="p1 sprite"/><div class="spriteName">p1</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p2.gif" alt="p2 sprite"/><div class="spriteName">p2</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p3.gif" alt="p3 sprite"/><div class="spriteName">p3</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p4.gif" alt="p4 sprite"/><div class="spriteName">p4</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p5.gif" alt="p5 sprite"/><div class="spriteName">p5</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p6.gif" alt="p6 sprite"/><div class="spriteName">p6</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p7.gif" alt="p7 sprite"/><div class="spriteName">p7</div></div>
+<div class="spriteCard"><img src="runs/current/sprites/p8.gif" alt="p8 sprite"/><div class="spriteName">p8</div></div></div>
+      </div>
+    </div>
+
+    <div class="grid2 section">
+      <div class="panel anim-in">
+        <h2>What was proven here</h2>
+        <div class="p">
+          A deterministic SkillRL-style loop that:
+          (1) observes failures, (2) distills compact skills, and (3) applies a strict output policy that measurably improves pass rate.
+        </div>
+        <div class="p">
+          This run includes a deterministic robustness stress-test that injects formatting noise.
+           Noise rate: 40%.
+        </div>
+        <details style="margin-top: 12px;">
+          <summary>Show proof configuration</summary>
+          <pre class="mono">{
+  &quot;harness&quot;: &quot;mixed&quot;,
+  &quot;max_skill_chars&quot;: 220,
+  &quot;max_skills&quot;: 64,
+  &quot;n_cases&quot;: 60,
+  &quot;seed&quot;: 1
+}</pre>
+        </details>
+        <details style="margin-top: 10px;">
+          <summary>Show runner details (sanitized)</summary>
+          <pre class="mono">{
+  &quot;base_model&quot;: &quot;(simulated)&quot;,
+  &quot;bin_path&quot;: &quot;(simulated)&quot;,
+  &quot;extra_args&quot;: &quot;&quot;,
+  &quot;max_tokens&quot;: 0,
+  &quot;temperature&quot;: 0.0
+}</pre>
+        </details>
+      </div>
+
+      <div class="panel anim-in">
+        <h2>Before and after (real examples)</h2>
+        <div class="p">A few cases where the system corrected outputs into a format that passes the harness.</div>
+        <div class="ex">
+          <div class="example">
+                    <div class="row">
+                      <span class="chip">shell</span>
+                      <span class="chip">pytest_quiet</span>
+                      <span class="chip">noise: inline_backticks</span>
+                    </div>
+                    <div class="mono" style="margin-top:10px;">
+                      <div class="before"><span class="label" style="text-transform:none;letter-spacing:0">Before:</span> `pytest -q`</div>
+                      <div class="after" style="margin-top:6px;"><span class="label" style="text-transform:none;letter-spacing:0">After:</span> pytest -q</div>
+                    </div>
+                  </div><div class="example">
+                    <div class="row">
+                      <span class="chip">shell</span>
+                      <span class="chip">disk_usage</span>
+                      <span class="chip">noise: inline_backticks</span>
+                    </div>
+                    <div class="mono" style="margin-top:10px;">
+                      <div class="before"><span class="label" style="text-transform:none;letter-spacing:0">Before:</span> `df -h`</div>
+                      <div class="after" style="margin-top:6px;"><span class="label" style="text-transform:none;letter-spacing:0">After:</span> df -h</div>
+                    </div>
+                  </div><div class="example">
+                    <div class="row">
+                      <span class="chip">shell</span>
+                      <span class="chip">docker_logs</span>
+                      <span class="chip">noise: inline_backticks</span>
+                    </div>
+                    <div class="mono" style="margin-top:10px;">
+                      <div class="before"><span class="label" style="text-transform:none;letter-spacing:0">Before:</span> `docker logs --tail 50 -f app`</div>
+                      <div class="after" style="margin-top:6px;"><span class="label" style="text-transform:none;letter-spacing:0">After:</span> docker logs --tail 50 -f app</div>
+                    </div>
+                  </div><div class="example">
+                    <div class="row">
+                      <span class="chip">shell</span>
+                      <span class="chip">docker_ps</span>
+                      <span class="chip">noise: inline_backticks</span>
+                    </div>
+                    <div class="mono" style="margin-top:10px;">
+                      <div class="before"><span class="label" style="text-transform:none;letter-spacing:0">Before:</span> `docker ps`</div>
+                      <div class="after" style="margin-top:6px;"><span class="label" style="text-transform:none;letter-spacing:0">After:</span> docker ps</div>
+                    </div>
+                  </div><div class="example">
+                    <div class="row">
+                      <span class="chip">shell</span>
+                      <span class="chip">curl_json</span>
+                      <span class="chip">noise: inline_backticks</span>
+                    </div>
+                    <div class="mono" style="margin-top:10px;">
+                      <div class="before"><span class="label" style="text-transform:none;letter-spacing:0">Before:</span> `curl`</div>
+                      <div class="after" style="margin-top:6px;"><span class="label" style="text-transform:none;letter-spacing:0">After:</span> curl</div>
+                    </div>
+                  </div><div class="example">
+                    <div class="row">
+                      <span class="chip">shell</span>
+                      <span class="chip">python_script_exec</span>
+                      <span class="chip">noise: inline_backticks</span>
+                    </div>
+                    <div class="mono" style="margin-top:10px;">
+                      <div class="before"><span class="label" style="text-transform:none;letter-spacing:0">Before:</span> `python train.py --dry-run`</div>
+                      <div class="after" style="margin-top:6px;"><span class="label" style="text-transform:none;letter-spacing:0">After:</span> python train.py --dry-run</div>
+                    </div>
+                  </div>
+        </div>
+        <div class="p" style="margin-top: 10px;">
+          View the full list: <a href="runs/current/fixed_failures.json">fixed_failures.json</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section panel anim-in">
+      <h2>Why this architecture compounds</h2>
+      <div class="grid2">
+        <div>
+          <div class="label">1) Competition creates pressure</div>
+          <div class="p">Battle royale forces adaptation. Weak behaviors get punished; robust behaviors survive.</div>
+        </div>
+        <div>
+          <div class="label">2) Everything is auditable</div>
+          <div class="p">Append-only, hash-chained event log plus full artifacts. You can replay and inspect why something improved.</div>
+        </div>
+        <div>
+          <div class="label">3) Learning is modular</div>
+          <div class="p">Skills are compact, composable, and can be applied immediately as policy. Later: real finetunes via adapter tokens.</div>
+        </div>
+        <div>
+          <div class="label">4) Deterministic replay</div>
+          <div class="p">Proxy state transitions are reproducible from seed + logged events, making claims testable.</div>
+        </div>
+      </div>
+      <div class="p" style="margin-top: 10px;">
+        Raw artifacts (sanitized): <a href="runs/current/verdict.json">verdict.json</a>, <a href="runs/current/report.json">report.json</a>,
+        <a href="runs/current/skill_bank.json">skill_bank.json</a>.
+      </div>
+    </div>
+
+    <div class="foot">
+      This page is generated from machine-readable artifacts. No screenshots, no handwaving.
+      If you want a live demo, we can run new seeds and publish new proof bundles.
+    </div>
+  </div>
+</body>
+</html>

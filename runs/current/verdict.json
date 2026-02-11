@@ -1,0 +1,9 @@
+{
+  "delta_ok_rate": 0.11666666666666667,
+  "exit_code": 0,
+  "fixed_failures_ref": "artifacts/prove/2026-02-11T02-24-43Z_seed1_mixed/fixed_failures.json",
+  "html_ref": "artifacts/prove/2026-02-11T02-24-43Z_seed1_mixed/index.html",
+  "min_delta_ok_rate": 0.01,
+  "ok": true,
+  "report_ref": "artifacts/prove/2026-02-11T02-24-43Z_seed1_mixed/report.json"
+}

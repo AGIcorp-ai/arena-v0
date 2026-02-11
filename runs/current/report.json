@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "arena_gif": "runs/current/arena.gif",
+    "arena_summary_json": "runs/current/arena_summary.json",
+    "fixed_failures_json": "runs/current/fixed_failures.json",
+    "report_json": "runs/current/report.json",
+    "skill_bank_json": "runs/current/skill_bank.json",
+    "sprites_dir": "runs/current/sprites",
+    "verdict_json": "runs/current/verdict.json"
+  },
+  "config": {
+    "harness": "mixed",
+    "max_skill_chars": 220,
+    "max_skills": 64,
+    "n_cases": 60,
+    "seed": 1
+  },
+  "format_noise": {
+    "enabled": true,
+    "noise_rate": 0.4
+  },
+  "llama": {
+    "base_model": "(simulated)",
+    "bin_path": "(simulated)",
+    "extra_args": "",
+    "max_tokens": 0,
+    "temperature": 0.0
+  },
+  "results": {
+    "baseline_ok": 40,
+    "baseline_ok_rate": 0.6666666666666666,
+    "delta_ok_rate": 0.11666666666666667,
+    "n": 60,
+    "policy_applied_n": 21,
+    "policy_applied_rate": 0.35,
+    "post_ok": 47,
+    "post_ok_rate": 0.7833333333333333
+  },
+  "schema_version": "ab_eval_v0_1"
+}

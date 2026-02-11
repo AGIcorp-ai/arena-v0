@@ -1,0 +1,71 @@
+{
+  "fixed": [
+    {
+      "baseline_line": "`pytest -q`",
+      "case_name": "pytest_quiet",
+      "case_type": "shell",
+      "format_noise": "inline_backticks",
+      "policy_line": "pytest -q",
+      "policy_notes": [
+        "removed_backticks",
+        "dropped_prompt_lines"
+      ]
+    },
+    {
+      "baseline_line": "`df -h`",
+      "case_name": "disk_usage",
+      "case_type": "shell",
+      "format_noise": "inline_backticks",
+      "policy_line": "df -h",
+      "policy_notes": [
+        "removed_backticks",
+        "dropped_prompt_lines"
+      ]
+    },
+    {
+      "baseline_line": "`docker logs --tail 50 -f app`",
+      "case_name": "docker_logs",
+      "case_type": "shell",
+      "format_noise": "inline_backticks",
+      "policy_line": "docker logs --tail 50 -f app",
+      "policy_notes": [
+        "removed_backticks",
+        "dropped_prompt_lines"
+      ]
+    },
+    {
+      "baseline_line": "`docker ps`",
+      "case_name": "docker_ps",
+      "case_type": "shell",
+      "format_noise": "inline_backticks",
+      "policy_line": "docker ps",
+      "policy_notes": [
+        "removed_backticks",
+        "dropped_prompt_lines"
+      ]
+    },
+    {
+      "baseline_line": "`curl`",
+      "case_name": "curl_json",
+      "case_type": "shell",
+      "format_noise": "inline_backticks",
+      "policy_line": "curl",
+      "policy_notes": [
+        "removed_backticks",
+        "dropped_prompt_lines"
+      ]
+    },
+    {
+      "baseline_line": "`python train.py --dry-run`",
+      "case_name": "python_script_exec",
+      "case_type": "shell",
+      "format_noise": "inline_backticks",
+      "policy_line": "python train.py --dry-run",
+      "policy_notes": [
+        "removed_backticks",
+        "dropped_prompt_lines"
+      ]
+    }
+  ],
+  "n": 6
+}
